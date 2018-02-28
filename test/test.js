@@ -1,20 +1,35 @@
 var chai = require('chai');
 var expect = chai.expect;
-var app = app.js;
-var Browser = require('zombie');
-var browser = new Browser();
+var app = '/../app.js';
+let chaiHttp = require('chai-http');
+// var Browser = require('zombie');
+// var url = 'http://localhost:3000';
+// var browser = new Browser();
+// chai.use(require('chai-jquery'));
+
+chai.use(chaiHttp);
 
 describe('Hello', function() {
-  before(function() {
-    this.server = http.createServer(app).listen(3000);
-    this.browser = new Browser({
-      site: 'http://localhost:3000'
-    });
-    it('should contain Hello Ben!');
+  // before(function() {
+  //   this.server = http.createServer(app).listen(3000);
+  //   this.browser = new Browser({
+  //     site: 'http://localhost:3000'
+  //   });
 
-
-
-  })
+    it("should contain Hello Ben!", function(next) {
+      chai.request(app)
+        .get('/')
+        .end((err, res) => {
+          res.should.have.status(200);
+          // res.body.should.be.a('array');
+          // res.body.length.should.be.eql(0);
+          done();
+       // browser.visit(url, function(err) {
+       //     expect($body).have.text('hello');
+       //     // expect(browser.query("input[value='Login']")).toBeDefined();
+       //     next();
+       });
+  });
 });
 // var assert = require('assert');
 // describe('Array', function() {
