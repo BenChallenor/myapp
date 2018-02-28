@@ -1,13 +1,9 @@
 var chai = require('chai');
 var expect = chai.expect;
 var app = '/../app.js';
-let chaiHttp = require('chai-http');
-// var Browser = require('zombie');
-// var url = 'http://localhost:3000';
-// var browser = new Browser();
-// chai.use(require('chai-jquery'));
-
-chai.use(chaiHttp);
+var Browser = require('zombie');
+var url = 'http://localhost:3000';
+var browser = new Browser();
 
 describe('Hello', function() {
   // before(function() {
@@ -17,17 +13,10 @@ describe('Hello', function() {
   //   });
 
     it("should contain Hello Ben!", function(next) {
-      chai.request(app)
-        .get('/')
-        .end((err, res) => {
-          res.should.have.status(200);
-          // res.body.should.be.a('array');
-          // res.body.length.should.be.eql(0);
-          done();
-       // browser.visit(url, function(err) {
-       //     expect($body).have.text('hello');
-       //     // expect(browser.query("input[value='Login']")).toBeDefined();
-       //     next();
+       browser.visit(url, function(err) {
+           browser.assert.text('title', 'welcome to brains');
+           // expect(browser.query("input[value='Login']")).toBeDefined();
+           next();
        });
   });
 });
