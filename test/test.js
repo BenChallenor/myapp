@@ -1,6 +1,6 @@
-var chai = require('chai');
-var expect = chai.expect;
-var app = '/../app.js';
+// var chai = require('chai');
+// var expect = chai.expect;
+// var app = '/../app.js';
 var Browser = require('zombie');
 var url = 'http://localhost:3000';
 var browser = new Browser();
