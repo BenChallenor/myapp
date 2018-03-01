@@ -2,7 +2,8 @@
 // var expect = chai.expect;
 // var app = '/../app.js';
 var Browser = require('zombie');
-var url = 'http://localhost:3000';
+Browser.localhost('localhost.com', 3000);
+// var url = 'http://localhost:3000';
 var browser = new Browser();
 
 describe('Hello', function() {
@@ -13,8 +14,9 @@ describe('Hello', function() {
   //   });
 
     it("should contain Hello Ben!", function(next) {
-       browser.visit(url, function(err) {
-           browser.assert.text('title', 'welcome to brains');
+       browser.visit('/', function() {
+         // console.log(browser.assert.text)
+           browser.assert.text('title','welcome to brains');
            // expect(browser.query("input[value='Login']")).toBeDefined();
            next();
        });
